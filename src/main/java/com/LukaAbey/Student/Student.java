@@ -1,4 +1,4 @@
-package com.LukaAbey.SuperSecureAPI.Student;
+package com.LukaAbey.Student;
 
 public class Student {
 	public final Integer studentID;

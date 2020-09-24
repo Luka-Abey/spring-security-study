@@ -1,4 +1,4 @@
-package com.LukaAbey.SuperSecureAPI.Security;
+package com.LukaAbey.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,8 +33,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	protected UserDetailsService userDetailsService() {
 		UserDetails Johnny = User.builder().username("JohnnySmith").password(passwordEncoder.encode("password"))
-				.roles("STUDENT").build();
+				.roles(AppUserRole.ADMIN.name()).build();
+		
+		UserDetails Jemma = User.builder().username("jemma123").password(passwordEncoder.encode("password123"))
+				.roles(AppUserRole.STUDENT.name()).build();
 
-		return new InMemoryUserDetailsManager(Johnny);
+		return new InMemoryUserDetailsManager(Johnny, Jemma);
 	}
 }

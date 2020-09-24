@@ -1,4 +1,4 @@
-package com.LukaAbey.SuperSecureAPI.Student;
+package com.LukaAbey.Student;
 
 import java.util.Arrays;
 import java.util.List;
