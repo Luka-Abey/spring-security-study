@@ -8,6 +8,8 @@ public class SuperSecureApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SuperSecureApiApplication.class, args);
+
 	}
 
 }
+

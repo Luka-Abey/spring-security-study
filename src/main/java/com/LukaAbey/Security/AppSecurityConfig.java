@@ -1,4 +1,7 @@
 package com.LukaAbey.Security;
+import static com.LukaAbey.Security.AppUserRole.ADMIN;
+import static com.LukaAbey.Security.AppUserRole.ADMINTRAINEE;
+import static com.LukaAbey.Security.AppUserRole.STUDENT;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +28,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated().and().httpBasic();
+		http.authorizeRequests().antMatchers("/", "index").permitAll().antMatchers("/api/**").hasRole(STUDENT.name())
+				.anyRequest().authenticated().and().httpBasic();
 
 	}
 
@@ -33,11 +37,14 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	protected UserDetailsService userDetailsService() {
 		UserDetails Johnny = User.builder().username("JohnnySmith").password(passwordEncoder.encode("password"))
-				.roles(AppUserRole.ADMIN.name()).build();
+				.roles(ADMIN.name()).build();
 		
 		UserDetails Jemma = User.builder().username("jemma123").password(passwordEncoder.encode("password123"))
-				.roles(AppUserRole.STUDENT.name()).build();
+				.roles(STUDENT.name()).build();
 
-		return new InMemoryUserDetailsManager(Johnny, Jemma);
+		UserDetails Tom = User.builder().username("tommy").password(passwordEncoder.encode("password123"))
+				.roles(ADMINTRAINEE.name()).build();
+
+		return new InMemoryUserDetailsManager(Johnny, Jemma, Tom);
 	}
 }
