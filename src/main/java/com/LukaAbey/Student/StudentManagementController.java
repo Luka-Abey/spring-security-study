@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("management/api/v1/students")
+@RequestMapping("/api/v1/students")
 public class StudentManagementController {
 	private static final List<Student> STUDENTS = Arrays.asList(new Student(4, "Joo"), new Student(5, "Harry"));
-
-	@GetMapping
-	public List<Student> getAllStudents() {
-		return STUDENTS;
-	}
 
 	@PostMapping
 	public void registerNewStudent(@RequestBody Student student) {
 		System.out.println(student);
+	}
+
+	@GetMapping
+	public List<Student> getAllStudents() {
+		return STUDENTS;
 	}
 
 	@PutMapping(path = "{studentID}")

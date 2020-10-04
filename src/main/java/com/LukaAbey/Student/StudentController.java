@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/students")
 public class StudentController {
 
-	private static final List<Student> STUDENTS = Arrays.asList(new Student(1, "Johnny"), new Student(2, "Jim"));
+	private static final List<Student> STUDENTS = Arrays.asList(new Student(1, "James Bond"),
+			new Student(2, "Maria Jones"), new Student(3, "Anna Smith"));
 
-	@GetMapping(path = "/{studentID}")
+	@GetMapping(path = "{studentID}")
 	public Student getStudent(@PathVariable("studentID") Integer studentID) {
 		return STUDENTS.stream().filter(student -> studentID.equals(student.getStudentID())).findFirst()
-				.orElseThrow(() -> new IllegalStateException("Does not exist"));
+				.orElseThrow(() -> new IllegalStateException("Student " + studentID + " does not exist"));
 	}
 }

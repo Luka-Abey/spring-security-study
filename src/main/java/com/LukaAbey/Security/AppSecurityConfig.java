@@ -7,6 +7,7 @@ import static com.LukaAbey.Security.AppUserRole.STUDENT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -34,10 +35,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable() // TODO: I will teach this in detail in the next section
 				.authorizeRequests().antMatchers("/", "index", "/css/*", "/js/*").permitAll().antMatchers("/api/**")
 				.hasRole(STUDENT.name())
-//                .antMatchers(HttpMethod.DELETE, "/management/api/**").hasAuthority(COURSE_WRITE.getPermission())
-//                .antMatchers(HttpMethod.POST, "/management/api/**").hasAuthority(COURSE_WRITE.getPermission())
-//                .antMatchers(HttpMethod.PUT, "/management/api/**").hasAuthority(COURSE_WRITE.getPermission())
-//                .antMatchers("/management/api/**").hasAnyRole(ADMIN.name(), ADMINTRAINEE.name())
+				.antMatchers(HttpMethod.DELETE, "/api/**").hasAuthority(COURSE_WRITE.getPermission())
+				.antMatchers(HttpMethod.POST, "/api/**").hasAuthority(COURSE_WRITE.getPermission())
+				.antMatchers(HttpMethod.PUT, "/api/**").hasAuthority(COURSE_WRITE.getPermission())
+				.antMatchers("/api/**").hasAnyRole(ADMIN.name(), ADMINTRAINEE.name())
 				.anyRequest().authenticated().and().httpBasic();
 	}
 
