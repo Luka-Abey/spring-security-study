@@ -1,5 +1,6 @@
 package com.LukaAbey.Security;
 
+import static com.LukaAbey.Security.AppUserPermission.COURSE_WRITE;
 import static com.LukaAbey.Security.AppUserRole.ADMIN;
 import static com.LukaAbey.Security.AppUserRole.ADMINTRAINEE;
 import static com.LukaAbey.Security.AppUserRole.STUDENT;
