@@ -12,4 +12,6 @@ public class PasswordConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
+
+	// look at diff encoders
 }
