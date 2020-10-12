@@ -25,5 +25,7 @@ Client takes username and password, and server verifies this and provides a sess
 Spring security by default stores the session IDs in memory database but best practice
 is to use Postgres etc.
 
+Got to 2:53:40
+
  
 
